@@ -1,43 +1,23 @@
 {
-    "version": 2,
-    "builds": [
+  "version": 2,
+  "builds": [
       {
-        "src": "./index.js",
-        "use": "@vercel/node"
+          "src": "index.js",
+          "use": "@vercel/node"
       }
-    ],
-    "rewrites": [
+  ],
+  "routes": [
       {
-        "source": "/(.*)",
-        "destination": "/index.js"
-      },
-      {
-        "source": "/api/v1/(.*)",
-        "destination": "/index.js"
+          "src": "/(.*)",
+          "dest": "index.js",
+          "methods": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE",
+              "OPTIONS"
+          ]
       }
-    ],
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          },
-          {
-            "key": "Access-Control-Allow-Methods",
-            "value": "GET, POST, PUT, PATCH, DELETE"
-          },
-          {
-            "key": "Access-Control-Allow-Headers",
-            "value": "Authorization, Content-Type"
-          },
-          {
-            "key": "cache-control",
-            "value": "s-maxage=1, stale-while-revalidate"
-          }
-        ]
-      }
-    ]
-  }
-  
+  ]
+}
